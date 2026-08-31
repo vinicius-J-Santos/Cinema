@@ -1,8 +1,8 @@
-import { Text, View, StyleSheet, Pressable, Image } from 'react-native'
+import { Text, View, StyleSheet, Pressable, Image, ScrollView } from 'react-native'
 
 export default function index() {
     return (
-        <View style={style.container}>
+        <ScrollView style={style.container}>
             <View style={style.navBar}>
                 <View><Text style={{fontWeight:"bold",fontSize:36}}>Titulo</Text></View>
                 <View style={style.navOpt}>
@@ -12,20 +12,29 @@ export default function index() {
                 </View>
             </View>
             <View style={style.carrossel}>
-                <Image source={{ uri:"https://ingresso-a.akamaihd.net/prd/img/movie/patrulha-canina-uma-aventura-dino/1a69bead-abaf-4831-ad0a-a3b98915fc4f.webp" }}></Image>
+                <Text style={{fontWeight:"bold",fontSize:20}}>Destaque do mês:</Text>
+                <Image source={{uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdNBLHOGwbG4J61AIcIwjO9eKORkaX5_GC31KDgOtKzA&s=10'}} style={style.imgCaroossel} />            
             </View>
             <View style={style.catalogo}>
-                <View style={style.categoria}><Text style={{fontWeight:"bold",fontSize:20}}>categoria 1</Text>
-                </View>
-                <View style={style.categoria}><Text style={{fontWeight:"bold",fontSize:20}}>categoria 2</Text>
-                </View>
-                <View style={style.categoria}><Text style={{fontWeight:"bold",fontSize:20}}>categoria 3</Text>
-                </View>
-                <View style={style.categoria}><Text style={{fontWeight:"bold",fontSize:20}}>categoria 4</Text>
-                </View>
-                
+                <Text style={{fontWeight:"bold",fontSize:20}}>categoria 1</Text>
+                <ScrollView horizontal showsHorizontalScrollIndicator={false} style={style.categoria}>
+                    {/* componentizar tudo e lembrar de fazer Pressable*/}
+                </ScrollView>
+                <Text style={{fontWeight:"bold",fontSize:20}}>categoria 2</Text>
+                <ScrollView horizontal showsHorizontalScrollIndicator={false} style={style.categoria}>
+                    {/* componentizar tudo e lembrar de fazer Pressable*/}
+                </ScrollView>
+                <Text style={{fontWeight:"bold",fontSize:20}}>categoria 3</Text>
+                <ScrollView horizontal showsHorizontalScrollIndicator={false} style={style.categoria}>
+                    {/* componentizar tudo e lembrar de fazer Pressable*/}
+                </ScrollView>
+                <Text style={{fontWeight:"bold",fontSize:20}}>categoria 4</Text>
+                <ScrollView horizontal showsHorizontalScrollIndicator={false} style={style.categoria}>
+                    {/* componentizar tudo e lembrar de fazer Pressable*/}
+                </ScrollView>
+                            
             </View>
-        </View>
+        </ScrollView>
     )
 }
 
@@ -36,11 +45,11 @@ const style = StyleSheet.create({
     },
     navBar: {
         width: "100%",
-        height: "15%",
+        height: 150,
         padding: 20,
         backgroundColor: "green",
         display:"flex",
-        alignContent: "flex-end",
+        alignItems: "flex-start",
         justifyContent: "space-between"
     },
     navOpt: {
@@ -53,10 +62,15 @@ const style = StyleSheet.create({
     },
     carrossel: {
         backgroundColor: "blue",
-        height: "30%",
+        height: "65%",
         margin: 15,
-        justifyContent:"center",
-        alignContent:"center"
+        justifyContent:"space-between",
+        alignItems:"flex-start"
+    },
+    imgCaroossel: {
+        width:"100%",
+        height:"80%",
+        borderRadius: 10
     },
     catalogo: {
         backgroundColor: "purple",
@@ -67,6 +81,11 @@ const style = StyleSheet.create({
     },
     categoria: {
         marginBottom: 10,
+        gap:5,
+        display:"flex",
+        flexDirection:"row",
+        flexWrap:"nowrap",
 
+        
     }
 })
