@@ -3,7 +3,7 @@ import {Tabs} from "expo-router"
 export default function RootLayout() {
 	return (
 		<Tabs screenOptions={{ headerShown: false }}>
-            <Tabs.Screen name="index" options={{title: "Index"}}/>
+            <Tabs.Screen name="index" options={{title: "Index", tabBarStyle:{display: 'none'}}}/>
         </Tabs>
     )
 }
