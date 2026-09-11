@@ -1,6 +1,6 @@
-import { Text, View, StyleSheet, Pressable, Image, ScrollView } from 'react-native'
 import { films } from '@/data/films';
 import { router } from 'expo-router';
+import { Image, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 
 export default function index() {
     const terrorFilms = films.filter((film) => film.category === "Terror");
@@ -11,20 +11,26 @@ export default function index() {
     return (
         <ScrollView style={style.container}>
             <View style={style.navBar}>
-                <View><Text style={{fontWeight:"bold",fontSize:36,color:"#fff279ff"}}>C!NEMA</Text></View>
+                <Text style={style.logo}>C!NEMA</Text>
                 <View style={style.navOpt}>
-                    <Pressable><Text style={style.text}>Catalogo</Text></Pressable>
-                    <Pressable><Text style={style.text}>Cinemas</Text></Pressable>
-                    <Pressable><Text style={style.text}>Ajuda</Text></Pressable>
+                    <Pressable style={style.activeNavItem}>
+                        <Text style={style.navText}>Catálogo</Text>
+                    </Pressable>
+                    <Pressable style={style.navItem} onPress={() => router.push("./cinemas")}>
+                        <Text style={style.navText}>Cinemas</Text>
+                    </Pressable>
+                    <Pressable style={style.navItem}>
+                        <Text style={style.navText}>Ajuda</Text>
+                    </Pressable>
                 </View>
             </View>
             <View style={style.carrossel}>
-                <Text style={{fontWeight:"bold",fontSize:22,color:"#fff279ff"}}>Destaque do mês:</Text>
+                <Text style={{fontWeight:"bold",fontSize:22,color:"#e7dca8"}}>Destaque do mês:</Text>
                 <Image source={{uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdNBLHOGwbG4J61AIcIwjO9eKORkaX5_GC31KDgOtKzA&s=10'}} style={style.imgCaroossel} />            
             </View>
             <View style={style.catalogo}>
-                <Text style={{fontWeight:"bold",alignSelf:"center",fontSize:22,color:"#fff279ff"}}>Catálogo de Filmes</Text>
-                <Text style={{fontWeight:"bold",fontSize:20,color:"#fff279ff"}}>Ação</Text>
+                <Text style={{fontWeight:"bold",alignSelf:"center",fontSize:22,color:"#e7dca8"}}>Catálogo de Filmes</Text>
+                <Text style={{fontWeight:"bold",fontSize:20,color:"#e7dca8"}}>Ação</Text>
                 <ScrollView horizontal showsHorizontalScrollIndicator={false} style={style.categoria}>
                     {actionFilms.map((film) => (
                         <Pressable style={style.filmItem} key={film.id} onPress={() => router.push(`./${film.id}`)}>
@@ -33,7 +39,7 @@ export default function index() {
                         </Pressable>
                     ))}
                 </ScrollView>
-                <Text style={{fontWeight:"bold",fontSize:20,color:"#fff279ff"}}>Terror</Text>
+                <Text style={{fontWeight:"bold",fontSize:20,color:"#e7dca8"}}>Terror</Text>
                 <ScrollView horizontal showsHorizontalScrollIndicator={false} style={style.categoria}>
                     {terrorFilms.map((film) => (
                         <Pressable style={style.filmItem} key={film.id} onPress={() => router.push(`./${film.id}`)}>
@@ -42,7 +48,7 @@ export default function index() {
                         </Pressable>
                     ))}
                 </ScrollView>
-                <Text style={{fontWeight:"bold",fontSize:20,color:"#fff279ff"}}>Comédia</Text>
+                <Text style={{fontWeight:"bold",fontSize:20,color:"#e7dca8"}}>Comédia</Text>
                 <ScrollView horizontal showsHorizontalScrollIndicator={false} style={style.categoria}>
                     {comedyFilms.map((film) => (
                         <Pressable style={style.filmItem} key={film.id} onPress={() => router.push(`./${film.id}`)}>
@@ -51,7 +57,7 @@ export default function index() {
                         </Pressable>
                         ))}
                 </ScrollView>
-                <Text style={{fontWeight:"bold",fontSize:20,color:"#fff279ff"}}>Documentário</Text>
+                <Text style={{fontWeight:"bold",fontSize:20,color:"#e7dca8"}}>Documentário</Text>
                 <ScrollView horizontal showsHorizontalScrollIndicator={false} style={style.categoria}>
                     {documentaryFilms.map((film) => (
                         <Pressable style={style.filmItem} key={film.id} onPress={() => router.push(`./${film.id}`)}>
@@ -68,32 +74,51 @@ export default function index() {
 const style = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#1d79f2ff"
+        backgroundColor: "#1e2d2f"
     },
     text: {
-        color:"#fff279ff",
+        color:"#e7dca8",
         fontSize: 18
+    },
+    logo: {
+        color: "#e7dca8",
+        fontSize: 30,
+        fontWeight: "bold",
+        letterSpacing: 1,
     },
     navBar: {
         width: "100%",
-        height: 150,
-        padding: 20,
-        backgroundColor: "#1a05a1ff",
-        display:"flex",
-        alignItems: "flex-start",
-        justifyContent: "space-between"
+        minHeight: 82,
+        paddingHorizontal: 20,
+        backgroundColor: "#201e2f",
+        alignItems: "center",
+        borderBottomColor: "rgba(231, 220, 168, 0.18)",
+        borderBottomWidth: 1,
+        flexDirection: "row",
+        justifyContent: "space-between",
     },
     navOpt: {
-        backgroundColor: "#0f0274ff",
-        width: "100%",
-        padding: 5,
-        borderRadius: 10,
-        display:"flex",
+        alignItems: "center",
         flexDirection: "row",
-        justifyContent: "space-between"
+        gap: 4,
+    },
+    navItem: {
+        paddingHorizontal: 8,
+        paddingVertical: 10,
+    },
+    activeNavItem: {
+        borderBottomColor: "#c57b57",
+        borderBottomWidth: 3,
+        paddingHorizontal: 8,
+        paddingVertical: 10,
+    },
+    navText: {
+        color: "#e7dca8",
+        fontSize: 15,
+        fontWeight: "bold",
     },
     carrossel: {
-        backgroundColor: "#1a05a1ff",
+        backgroundColor: "#2f201e",
         height: 300,
         padding:15,
         margin: 10,
@@ -107,7 +132,7 @@ const style = StyleSheet.create({
         borderRadius: 10
     },
     catalogo: {
-        backgroundColor: "#1a05a1ff",
+        backgroundColor: "#2f201e",
         margin: 10,
         padding: 15,
         borderRadius: 20,
@@ -128,10 +153,10 @@ const style = StyleSheet.create({
         justifyContent: "center",
         padding: 5,
         marginRight: 10,
-        backgroundColor: "rgb(104, 55, 238)"
+        backgroundColor: "#2d2f1e"
     },
     filmeTitulo: {
-        color:"#fff279ff",
+        color:"#e7dca8",
         fontSize: 16,
         fontWeight: "bold"
     }
