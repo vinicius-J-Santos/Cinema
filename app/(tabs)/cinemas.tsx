@@ -1,7 +1,9 @@
 import { router } from 'expo-router';
 import { Pressable, StyleSheet, Text, View, ScrollView, Image } from 'react-native';
+import { cinemas } from '@/data/cinema'
 
-export default function cinemas() {
+
+export default function cinems() {
     return (
         <ScrollView style={style.container}>
             <View style={style.navBar}>
@@ -18,6 +20,14 @@ export default function cinemas() {
                     </Pressable>
                 </View>
             </View>
+            <ScrollView horizontal showsHorizontalScrollIndicator={false} style={style.categoria}>
+                {cinemas.map((cinema) => (
+                    <Pressable style={style.filmItem} key={cinema.idCine} onPress={() => router.push(`./${cinema.idCine}`)}>
+                        <Text>{cinema.endereco}</Text>
+                        <Text style={style.filmeTitulo}>{cinema.nome}</Text>
+                    </Pressable>
+                    ))}
+            </ScrollView>
         </ScrollView>
     )
 }
