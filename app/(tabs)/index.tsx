@@ -16,17 +16,10 @@ export default function index() {
                     <Pressable style={style.activeNavItem}>
                         <Text style={style.navText}>Catálogo</Text>
                     </Pressable>
-                    <Pressable style={style.navItem} onPress={() => router.push("./cinemas")}>
-                        <Text style={style.navText}>Cinemas</Text>
-                    </Pressable>
                     <Pressable style={style.navItem}>
                         <Text style={style.navText}>Ajuda</Text>
                     </Pressable>
                 </View>
-            </View>
-            <View style={style.carrossel}>
-                <Text style={{fontWeight:"bold",fontSize:22,color:"#e7dca8"}}>Destaque do mês:</Text>
-                <Image source={{uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdNBLHOGwbG4J61AIcIwjO9eKORkaX5_GC31KDgOtKzA&s=10'}} style={style.imgCaroossel} />            
             </View>
             <View style={style.catalogo}>
                 <Text style={{fontWeight:"bold",alignSelf:"center",fontSize:22,color:"#e7dca8"}}>Catálogo de Filmes</Text>
